@@ -201,7 +201,7 @@ export default function AppLayout() {
       </AnimatePresence>
 
       <main 
-        className="relative z-10 w-full max-w-md h-full bg-black flex flex-col overflow-y-auto overflow-x-hidden" 
+        className="relative z-10 w-full max-w-md md:max-w-2xl h-full bg-black flex flex-col overflow-y-auto overflow-x-hidden scrollbar-hide" 
         style={{ paddingBottom: isDockVisible ? 'calc(88px + env(safe-area-inset-bottom))' : '0px' }}
       >
         {/* Top Header - Hide if we are in ANY message route or if dock is hidden */}

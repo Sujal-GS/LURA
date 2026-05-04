@@ -60,11 +60,14 @@ function AppRoutes() {
   )
 }
 
+import { FeedbackPill } from './components/FeedbackPill'
+
 export default function App() {
   return (
     <BrowserRouter>
       <AuthProvider>
         <AppRoutes />
+        <FeedbackPill />
       </AuthProvider>
     </BrowserRouter>
   )

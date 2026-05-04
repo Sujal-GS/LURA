@@ -63,8 +63,12 @@ export default function AdminTerminal() {
     setLoading(true);
     setFetchError(null);
     try {
-      // Simplest possible query to see if data exists
-      let query = supabase.from('feedback').select('*').order('created_at', { ascending: false });
+      // Fetch feedback with associated profile data
+      let query = supabase
+        .from('feedback')
+        .select('*, profiles:user_id(username, avatar_url)')
+        .order('created_at', { ascending: false });
+      
       if (feedbackFilter !== 'all') query = query.eq('type', feedbackFilter);
       
       const { data, error } = await query;
@@ -134,7 +138,7 @@ export default function AdminTerminal() {
   };
 
   return (
-    <div className="min-h-screen bg-black pb-48 pt-8 px-4">
+    <div className="min-h-screen bg-black pb-[300px] pt-8 px-4">
       <div className="max-w-5xl mx-auto space-y-8">
         {/* Header Section */}
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
@@ -243,8 +247,15 @@ export default function AdminTerminal() {
                       </div>
                       <div className="flex items-center gap-2 text-neutral-500">
                         <div className="flex items-center gap-2 mr-auto">
-                          <Mail className="w-3.5 h-3.5 opacity-50" />
-                          <span className="text-[11px] font-semibold">{item.user_email || 'Anonymous'}</span>
+                          <img 
+                            src={item.profiles?.avatar_url || `https://ui-avatars.com/api/?name=${item.profiles?.username || 'User'}`} 
+                            className="w-5 h-5 rounded-full object-cover border border-white/10"
+                          />
+                          <span className="text-[11px] font-bold text-neutral-400">
+                            @{item.profiles?.username || 'unknown'}
+                          </span>
+                          <span className="text-neutral-700 text-[10px]">•</span>
+                          <span className="text-[10px] font-medium text-neutral-600">{item.user_email || 'No Email'}</span>
                         </div>
                         <span className="text-[9px] text-neutral-700 font-mono">ID: {item.id.slice(0, 8)}</span>
                       </div>

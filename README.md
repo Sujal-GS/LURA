@@ -14,9 +14,13 @@ Lura is a premium, minimalist social media platform designed for authentic shari
 > **📱 Coming Soon**: A native **Android version** of Lura is currently in development and will be released soon!
 >
 > **⚠️ Usage & Conduct**: 
-> - Please be **considerate and respectful** in what you post. 
-> - Due to **storage limitations**, we kindly ask users to post sparingly. 
-> - Any **inappropriate behavior** or violation of these guidelines will result in an immediate **permanent ban** from the platform and all services.
+> - **Be Considerate**: Be respectful in what you post. Lura is a space for authentic connection, not conflict.
+> - **Storage Conscious**: Due to **storage limitations**, please post sparingly. Avoid uploading extremely large files or duplicate content.
+> - **No Harassment**: Bullying, hate speech, or targeted harassment of any kind will not be tolerated.
+> - **Content Standards**: Posting NSFW, illegal, or highly graphic content is strictly prohibited.
+> - **No Spam or Botting**: Automated posting, spamming comments, or attempting to manipulate the "Trending" algorithm will result in removal.
+> - **Authenticity**: While Anonymity is allowed, impersonating real individuals or organizations to spread misinformation is forbidden.
+> - **Permanent Bans**: Any violation of these standards will result in an immediate and permanent ban from the platform.
 
 ---
 

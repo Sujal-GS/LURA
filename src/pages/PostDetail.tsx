@@ -23,7 +23,7 @@ export default function PostDetail() {
           .from('posts')
           .select(`
             *,
-            profiles (username, avatar_url, is_premium)
+            profiles (username, avatar_url, is_premium, is_banned)
           `)
           .eq('id', postId)
           .single()

@@ -6,6 +6,7 @@ import { Hexagon, Home, Search, PlusSquare, User, Activity, MessageCircle, Crown
 import { useNavigate, useLocation } from 'react-router-dom'
 import { CreatePostModal } from '../components/CreatePostModal'
 import { FeedbackModal } from '../components/FeedbackModal'
+import { OnboardingModal } from '../components/OnboardingModal'
 import { supabase } from '../lib/supabase'
 import { useAuth } from '../components/AuthProvider'
 import bugIcon from '../assets/bug-feedback.png'
@@ -13,6 +14,7 @@ import bugIcon from '../assets/bug-feedback.png'
 export default function AppLayout() {
   const [isCreateOpen, setIsCreateOpen] = useState(false)
   const [isFeedbackOpen, setIsFeedbackOpen] = useState(false)
+  const [isOnboardingOpen, setIsOnboardingOpen] = useState(false)
   const [isDockVisible, setIsDockVisible] = useState(true)
   const [hasNewNotification, setHasNewNotification] = useState(false)
   const [hasUnreadMessages, setHasUnreadMessages] = useState(false)
@@ -71,16 +73,21 @@ export default function AppLayout() {
     }
   }, [session?.user?.id])
 
-  // Fetch premium status
+  // Fetch premium status & onboarding status
   useEffect(() => {
     if (!session?.user?.id) return
     supabase
       .from('profiles')
-      .select('is_premium')
+      .select('is_premium, has_accepted_terms')
       .eq('id', session.user.id)
       .single()
       .then(({ data }) => {
-        if (data) setIsPremiumUser(data.is_premium || false)
+        if (data) {
+          setIsPremiumUser(data.is_premium || false)
+          if (data.has_accepted_terms === false) {
+            setIsOnboardingOpen(true)
+          }
+        }
       })
   }, [session?.user?.id])
 
@@ -263,6 +270,11 @@ export default function AppLayout() {
       <FeedbackModal 
         isOpen={isFeedbackOpen}
         onClose={() => setIsFeedbackOpen(false)}
+      />
+
+      <OnboardingModal 
+        isOpen={isOnboardingOpen}
+        onAccepted={() => setIsOnboardingOpen(false)}
       />
     </div>
   )

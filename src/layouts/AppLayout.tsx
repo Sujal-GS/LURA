@@ -92,7 +92,8 @@ export default function AppLayout() {
           }
           setIsPremiumUser(data.is_premium || false)
           setIsAdmin(data.is_admin || false)
-          if (data.has_accepted_terms === false) {
+          // If the user hasn't explicitly accepted (is false or null), show the modal
+          if (!data.has_accepted_terms) {
             setIsOnboardingOpen(true)
           }
         }

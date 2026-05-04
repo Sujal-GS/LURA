@@ -32,11 +32,15 @@ export function CreatePostModal({ isOpen, onClose, onSuccess }: CreatePostModalP
   const [isUploading, setIsUploading] = useState(false)
   const [error, setError] = useState('')
 
+  const [croppedImageBlob, setCroppedImageBlob] = useState<Blob | null>(null)
+  const [croppedImageUrl, setCroppedImageUrl] = useState<string>('')
+
   React.useEffect(() => {
     return () => {
       if (mediaUrl) URL.revokeObjectURL(mediaUrl)
+      if (croppedImageUrl) URL.revokeObjectURL(croppedImageUrl)
     }
-  }, [mediaUrl])
+  }, [mediaUrl, croppedImageUrl])
 
   React.useEffect(() => {
     if (isOpen) {
@@ -143,30 +147,58 @@ export function CreatePostModal({ isOpen, onClose, onSuccess }: CreatePostModalP
   const getCroppedImg = async (imageSrc: string, pixelCrop: any): Promise<Blob> => {
     const image = new window.Image()
     image.src = imageSrc
-    await new Promise(resolve => image.onload = resolve)
-
-    const MAX_DIMENSION = 1920
-    let w = pixelCrop.width
-    let h = pixelCrop.height
-    if (w > MAX_DIMENSION || h > MAX_DIMENSION) {
-      const scale = MAX_DIMENSION / Math.max(w, h)
-      w = Math.round(w * scale)
-      h = Math.round(h * scale)
-    }
+    image.crossOrigin = 'anonymous' // Avoid potential CORS issues with blob URLs
+    await new Promise((resolve, reject) => {
+      image.onload = resolve
+      image.onerror = reject
+    })
 
     const canvas = document.createElement('canvas')
-    canvas.width = w
-    canvas.height = h
     const ctx = canvas.getContext('2d')
     if (!ctx) throw new Error('No 2d context')
-    ctx.drawImage(image, pixelCrop.x, pixelCrop.y, pixelCrop.width, pixelCrop.height, 0, 0, w, h)
+
+    // Standard high-quality export size
+    const exportSize = 1080 
+    canvas.width = exportSize
+    canvas.height = exportSize
+
+    ctx.drawImage(
+      image,
+      pixelCrop.x,
+      pixelCrop.y,
+      pixelCrop.width,
+      pixelCrop.height,
+      0,
+      0,
+      exportSize,
+      exportSize
+    )
+
     return new Promise((resolve) => {
-      canvas.toBlob((blob) => resolve(blob!), 'image/jpeg', 0.85)
+      canvas.toBlob((blob) => resolve(blob!), 'image/jpeg', 0.9)
     })
   }
 
   const handleNext = async () => {
-    if (step === 'crop') setStep('details')
+    if (step === 'crop') {
+      if (mediaType === 'image' && croppedAreaPixels) {
+        setIsUploading(true)
+        try {
+          const croppedBlob = await getCroppedImg(mediaUrl, croppedAreaPixels)
+          const url = URL.createObjectURL(croppedBlob)
+          setCroppedImageBlob(croppedBlob)
+          setCroppedImageUrl(url)
+          setStep('details')
+        } catch (err) {
+          console.error("Cropping failed:", err)
+          setError("Failed to crop image. Please try again.")
+        } finally {
+          setIsUploading(false)
+        }
+      } else {
+        setStep('details')
+      }
+    }
     else if (step === 'details') handleUpload()
   }
 
@@ -175,17 +207,19 @@ export function CreatePostModal({ isOpen, onClose, onSuccess }: CreatePostModalP
     setIsUploading(true)
     setError('')
     try {
-      let uploadBlob: Blob = file
-      if (mediaType === 'image' && croppedAreaPixels) {
-        uploadBlob = await getCroppedImg(mediaUrl, croppedAreaPixels)
-      }
+      let uploadBlob: Blob = croppedImageBlob || file
+      
       const fileExt = mediaType === 'image' ? 'jpg' : file.name.split('.').pop()
       const fileName = `${session.user.id}/${Date.now()}.${fileExt}`
+      
       const { error: uploadError } = await supabase.storage
         .from('posts')
         .upload(fileName, uploadBlob, { cacheControl: '3600', upsert: false })
+      
       if (uploadError) throw uploadError
+      
       const { data: { publicUrl } } = supabase.storage.from('posts').getPublicUrl(fileName)
+      
       const { error: dbError } = await supabase.from('posts').insert({
         user_id: session.user.id,
         image_url: publicUrl,
@@ -208,6 +242,8 @@ export function CreatePostModal({ isOpen, onClose, onSuccess }: CreatePostModalP
     setStep('select')
     setFile(null)
     setMediaUrl('')
+    setCroppedImageBlob(null)
+    setCroppedImageUrl('')
     setCaption('')
     setIsPremium(false)
     setIsAnonymous(false)
@@ -363,9 +399,15 @@ export function CreatePostModal({ isOpen, onClose, onSuccess }: CreatePostModalP
               {/* ── STEP 3: DETAILS ── */}
               {step === 'details' && (
                 <div className="flex-1 flex flex-col overflow-y-auto">
-                  <div className="w-full aspect-square bg-black shrink-0 border-b border-white/5">
+                  <div className="w-full aspect-square bg-black shrink-0 border-b border-white/5 flex items-center justify-center overflow-hidden">
                     {mediaType === 'image'
-                      ? <img src={mediaUrl} alt="Preview" className="w-full h-full object-cover" />
+                      ? (
+                        <img 
+                          src={croppedImageUrl || mediaUrl} 
+                          alt="Preview" 
+                          className={`w-full h-full ${croppedImageUrl ? 'object-cover' : 'object-contain'}`} 
+                        />
+                      )
                       : <video src={mediaUrl} className="w-full h-full object-cover" muted playsInline />
                     }
                   </div>
@@ -432,7 +474,9 @@ export function CreatePostModal({ isOpen, onClose, onSuccess }: CreatePostModalP
                 <div className="absolute inset-0 bg-black/70 backdrop-blur-md flex items-center justify-center z-50">
                   <div className="flex flex-col items-center gap-3">
                     <Loader2 className="w-9 h-9 text-white animate-spin" />
-                    <span className="text-white font-medium text-sm">Sharing to Lura...</span>
+                    <span className="text-white font-medium text-sm">
+                      {step === 'crop' ? 'Processing crop...' : 'Sharing to Lura...'}
+                    </span>
                   </div>
                 </div>
               )}

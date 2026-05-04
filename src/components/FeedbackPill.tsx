@@ -7,7 +7,11 @@ import { HoverButton } from './ui/hover-button';
 
 import { useLocation } from 'react-router-dom';
 
-export function FeedbackPill() {
+interface FeedbackPillProps {
+  variant?: 'floating' | 'header';
+}
+
+export function FeedbackPill({ variant = 'floating' }: FeedbackPillProps) {
   const location = useLocation();
   const [isOpen, setIsOpen] = useState(false);
   const [type, setType] = useState<'feature' | 'bug'>('feature');
@@ -57,18 +61,31 @@ export function FeedbackPill() {
 
   return (
     <>
-      {/* Floating Pill */}
-      <motion.button
-        initial={{ scale: 0, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        whileHover={{ scale: 1.02, opacity: 1 }}
-        whileTap={{ scale: 0.98 }}
-        onClick={() => setIsOpen(true)}
-        className="fixed bottom-20 md:bottom-6 right-6 z-[100] flex items-center gap-2 px-3 py-1.5 md:px-3 md:py-1.5 rounded-full bg-white/5 backdrop-blur-md border border-white/10 shadow-lg group hover:bg-white/10 transition-all duration-300 opacity-60 hover:opacity-100"
-      >
-        <MessageSquarePlus className="w-4 h-4 md:w-3.5 md:h-3.5 text-neutral-500 group-hover:text-neutral-300 transition-colors" />
-        <span className="hidden md:block text-[11px] font-medium tracking-tight text-neutral-500 group-hover:text-neutral-300 uppercase">Feedback</span>
-      </motion.button>
+      {/* Floating Pill (Desktop Only) */}
+      {variant === 'floating' && (
+        <motion.button
+          initial={{ scale: 0, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          whileHover={{ scale: 1.02, opacity: 1 }}
+          whileTap={{ scale: 0.98 }}
+          onClick={() => setIsOpen(true)}
+          className="fixed bottom-6 right-6 z-[100] hidden md:flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 backdrop-blur-md border border-white/10 shadow-lg group hover:bg-white/10 transition-all duration-300 opacity-60 hover:opacity-100"
+        >
+          <MessageSquarePlus className="w-3.5 h-3.5 text-neutral-500 group-hover:text-neutral-300 transition-colors" />
+          <span className="text-[11px] font-medium tracking-tight text-neutral-500 group-hover:text-neutral-300 uppercase">Feedback</span>
+        </motion.button>
+      )}
+
+      {/* Header Pill (Mobile Only) */}
+      {variant === 'header' && (
+        <button
+          onClick={() => setIsOpen(true)}
+          className="md:hidden p-1.5 hover:bg-white/10 rounded-full transition-colors relative text-neutral-500 hover:text-neutral-300"
+          title="Feedback"
+        >
+          <MessageSquarePlus className="w-6 h-6" />
+        </button>
+      )}
 
       {/* Modal Backdrop */}
       <AnimatePresence>

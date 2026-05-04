@@ -7,6 +7,7 @@ import { useNavigate, useLocation } from 'react-router-dom'
 import { CreatePostModal } from '../components/CreatePostModal'
 import { supabase } from '../lib/supabase'
 import { useAuth } from '../components/AuthProvider'
+import { FeedbackPill } from '../components/FeedbackPill'
 
 export default function AppLayout() {
   const [isCreateOpen, setIsCreateOpen] = useState(false)
@@ -206,8 +207,9 @@ export default function AppLayout() {
               <h1 className="text-sm font-semibold tracking-widest uppercase">Lura</h1>
             </div>
 
-            {/* Right: Messages */}
-            <div className="w-[80px] flex items-center justify-end">
+            {/* Right: Messages & Feedback */}
+            <div className="w-[80px] flex items-center justify-end gap-1">
+              <FeedbackPill variant="header" />
               <button onClick={() => navigate('/messages')} className="p-1.5 hover:bg-white/10 rounded-full transition-colors relative text-white">
                 <MessageCircle className="w-6 h-6" />
                 {hasUnreadMessages && (

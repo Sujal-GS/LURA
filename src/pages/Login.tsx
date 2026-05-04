@@ -243,22 +243,18 @@ export default function Login() {
             <div className="flex flex-col items-center">
               {/* Logo & Header */}
               <div className="mb-8 text-center flex flex-col items-center">
-                <div className="mb-4 w-12 h-12 rounded-xl flex items-center justify-center bg-gradient-to-br from-neutral-800 to-black border border-neutral-800 shadow-[0_0_40px_rgba(255,255,255,0.05)]">
-                  <Hexagon className="w-6 h-6 text-white" strokeWidth={1.5} />
-                </div>
-
                 {forgotMode ? (
                   <>
-                    <h1 className="text-3xl font-bold tracking-tight">Reset password</h1>
+                    <h1 className="text-3xl font-normal tracking-tight">Reset password</h1>
                     <p className="mt-2 text-neutral-400 text-sm max-w-sm text-balance">
                       Enter your email and we'll send you a reset link.
                     </p>
                   </>
                 ) : (
                   <>
-                    <h1 className="text-3xl font-bold tracking-tight text-balance">Welcome back</h1>
+                    <h1 className="text-3xl font-normal tracking-tight text-balance">Welcome back</h1>
                     <p className="mt-2 text-neutral-400 text-sm max-w-sm text-balance">
-                      Enter your credentials to securely access the Lura ecosystem.
+                      Sign into your account
                     </p>
                   </>
                 )}

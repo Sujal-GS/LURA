@@ -2,15 +2,16 @@ import React, { useState, useEffect } from 'react'
 import { Outlet } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { DockMorph } from '../components/ui/dock-morph'
-import { Hexagon, Home, Search, PlusSquare, User, Activity, MessageCircle, Crown } from 'lucide-react'
+import { Hexagon, Home, Search, PlusSquare, User, Activity, MessageCircle, Crown, MessageSquarePlus } from 'lucide-react'
 import { useNavigate, useLocation } from 'react-router-dom'
 import { CreatePostModal } from '../components/CreatePostModal'
+import { FeedbackModal } from '../components/FeedbackModal'
 import { supabase } from '../lib/supabase'
 import { useAuth } from '../components/AuthProvider'
-import { FeedbackPill } from '../components/FeedbackPill'
 
 export default function AppLayout() {
   const [isCreateOpen, setIsCreateOpen] = useState(false)
+  const [isFeedbackOpen, setIsFeedbackOpen] = useState(false)
   const [isDockVisible, setIsDockVisible] = useState(true)
   const [hasNewNotification, setHasNewNotification] = useState(false)
   const [hasUnreadMessages, setHasUnreadMessages] = useState(false)
@@ -136,6 +137,7 @@ export default function AppLayout() {
     { icon: Home, label: "Home", isActive: location.pathname === "/", onClick: () => navigate("/") },
     { icon: Search, label: "Explore", isActive: location.pathname === "/explore", onClick: () => navigate("/explore") },
     { icon: PlusSquare, label: "Create", onClick: () => { setIsCreateOpen(true); setIsDockVisible(false); } },
+    { icon: MessageSquarePlus, label: "Feedback", onClick: () => setIsFeedbackOpen(true) },
     { icon: Activity, label: "Activity", isActive: location.pathname === "/activity", hasNotification: hasNewNotification && location.pathname !== '/activity', onClick: () => navigate("/activity") },
     { icon: User, label: "Profile", isActive: location.pathname === "/profile", onClick: () => navigate("/profile") },
   ]
@@ -207,9 +209,8 @@ export default function AppLayout() {
               <h1 className="text-sm font-semibold tracking-widest uppercase">Lura</h1>
             </div>
 
-            {/* Right: Messages & Feedback */}
-            <div className="w-[80px] flex items-center justify-end gap-1">
-              <FeedbackPill variant="header" />
+            {/* Right: Messages */}
+            <div className="w-[80px] flex items-center justify-end">
               <button onClick={() => navigate('/messages')} className="p-1.5 hover:bg-white/10 rounded-full transition-colors relative text-white">
                 <MessageCircle className="w-6 h-6" />
                 {hasUnreadMessages && (
@@ -252,6 +253,11 @@ export default function AppLayout() {
           setIsDockVisible(true)
           navigate("/")
         }} 
+      />
+
+      <FeedbackModal 
+        isOpen={isFeedbackOpen}
+        onClose={() => setIsFeedbackOpen(false)}
       />
     </div>
   )

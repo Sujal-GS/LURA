@@ -680,11 +680,11 @@ export default function Profile() {
 
               <div className="flex flex-col">
                 {/* Header/Hero */}
-                <div className="h-32 bg-gradient-to-br from-neutral-900 to-black border-b border-white/5 flex items-center justify-center relative overflow-hidden">
-                  <div className="absolute inset-0 opacity-20">
+                <div className="h-28 bg-gradient-to-br from-neutral-900 to-black border-b border-white/5 flex items-center justify-center relative overflow-hidden">
+                  <div className="absolute inset-0 opacity-10">
                     <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_120%,#3b82f6,transparent)]" />
                   </div>
-                  <h3 className="text-white/20 font-black text-6xl tracking-tighter select-none">ARCHITECT</h3>
+                  <h3 className="text-white/10 font-black text-8xl select-none">: )</h3>
                 </div>
 
                 {/* Content */}

@@ -152,16 +152,16 @@ export default function AdminTerminal() {
   };
 
   return (
-    <div className="min-h-screen bg-black pb-[300px] pt-8 px-4 relative">
-      <div className="max-w-5xl mx-auto space-y-8">
+    <div className="min-h-screen bg-black pb-[300px] pt-8 px-4 relative overflow-x-hidden">
+      <div className="max-w-4xl mx-auto space-y-8">
         {/* Header Section */}
         <div className="flex flex-col gap-8 pb-6 border-b border-white/5">
           <div className="flex items-center gap-5">
             <div className="w-14 h-14 rounded-2xl bg-red-500/10 border border-red-500/20 flex items-center justify-center flex-shrink-0 shadow-[0_0_20px_rgba(239,68,68,0.1)]">
               <ShieldAlert className="w-7 h-7 text-red-500" />
             </div>
-            <div className="space-y-0.5">
-              <h1 className="text-3xl md:text-5xl font-normal tracking-tight text-white whitespace-nowrap">Admin Terminal</h1>
+            <div className="space-y-0.5 min-w-0">
+              <h1 className="text-2xl md:text-4xl font-normal tracking-tight text-white truncate">Admin Terminal</h1>
               <p className="text-neutral-500 text-[10px] md:text-xs font-medium uppercase tracking-[0.3em]">System Control Unit</p>
             </div>
           </div>
@@ -302,35 +302,35 @@ export default function AdminTerminal() {
               {loading ? (
                 <div className="py-20 flex justify-center"><div className="w-8 h-8 border-2 border-white/10 border-t-white rounded-full animate-spin" /></div>
               ) : (
-                <div className="grid gap-6">
+                <div className="grid gap-4">
                   {users.map((user) => (
-                    <div key={user.id} className={`bg-neutral-900/40 backdrop-blur-2xl border ${user.is_banned ? 'border-red-500/20' : 'border-white/10'} rounded-[3rem] p-6 md:p-10 transition-all hover:bg-neutral-900/60`}>
-                      <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-8">
-                        <div className="flex items-center gap-6 flex-1 min-w-0">
+                    <div key={user.id} className={`bg-neutral-900/40 backdrop-blur-2xl border ${user.is_banned ? 'border-red-500/20' : 'border-white/10'} rounded-[2.5rem] p-5 md:p-7 transition-all hover:bg-neutral-900/60`}>
+                      <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
+                        <div className="flex items-center gap-4 md:gap-6 flex-1 min-w-0">
                           <div className="relative flex-shrink-0">
                             <img 
                               src={user.avatar_url || `https://ui-avatars.com/api/?name=${user.username}`} 
-                              className={`w-16 h-16 md:w-20 md:h-20 rounded-full border-2 ${user.is_premium ? 'border-yellow-500/40' : 'border-white/10'} object-cover`}
+                              className={`w-14 h-14 md:w-16 md:h-16 rounded-full border-2 ${user.is_premium ? 'border-yellow-500/40' : 'border-white/10'} object-cover`}
                             />
                             {user.is_admin && (
-                              <div className="absolute -bottom-1 -right-1 bg-blue-500 rounded-full p-1.5 border-2 border-black">
-                                <ShieldCheck className="w-3.5 h-3.5 text-white" />
+                              <div className="absolute -bottom-1 -right-1 bg-blue-500 rounded-full p-1 border-2 border-black">
+                                <ShieldCheck className="w-2.5 h-2.5 text-white" />
                               </div>
                             )}
                           </div>
                           <div className="min-w-0">
-                            <div className="flex flex-wrap items-center gap-3 mb-1">
-                              <h3 className="text-lg md:text-2xl font-bold text-white truncate max-w-[200px] md:max-w-none">@{user.username}</h3>
-                              {user.is_premium && <Crown className="w-5 h-5 text-yellow-500" />}
+                            <div className="flex flex-wrap items-center gap-2 mb-1">
+                              <h3 className="text-base md:text-xl font-bold text-white truncate max-w-[150px] md:max-w-none">@{user.username}</h3>
+                              {user.is_premium && <Crown className="w-4 h-4 text-yellow-500" />}
                             </div>
-                            <p className="text-neutral-500 text-sm md:text-base truncate">{user.full_name || 'No Name'}</p>
+                            <p className="text-neutral-500 text-xs md:text-sm truncate">{user.full_name || 'No Name'}</p>
                             {user.is_banned && (
-                              <span className="text-[10px] font-black uppercase tracking-widest text-red-500 mt-2 block">Banned User</span>
+                              <span className="text-[10px] font-black uppercase tracking-widest text-red-500 mt-1.5 block">Banned User</span>
                             )}
                           </div>
                         </div>
 
-                        <div className="flex flex-wrap items-center gap-3 flex-shrink-0">
+                        <div className="flex flex-wrap items-center gap-2 flex-shrink-0">
                           {/* Premium Action */}
                           <button
                             onClick={() => togglePremium(user.id, user.is_premium)}

@@ -92,13 +92,13 @@ export function FeedbackPill({ variant = 'floating' }: FeedbackPillProps) {
       {/* Modal Backdrop */}
       <AnimatePresence>
         {isOpen && (
-          <div className="fixed inset-0 z-[110] flex items-center justify-center p-4">
+          <div className="fixed inset-0 z-[1000] flex items-center justify-center p-4 sm:p-6">
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setIsOpen(false)}
-              className="absolute inset-0 bg-black/80 backdrop-blur-sm"
+              className="absolute inset-0 bg-black/60 backdrop-blur-md"
             />
 
             {/* Modal Content */}
@@ -106,7 +106,7 @@ export function FeedbackPill({ variant = 'floating' }: FeedbackPillProps) {
               initial={{ scale: 0.9, opacity: 0, y: 20 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.9, opacity: 0, y: 20 }}
-              className="relative w-full max-w-sm bg-neutral-900 border border-white/10 rounded-2xl p-6 shadow-2xl overflow-hidden"
+              className="relative w-full max-w-sm bg-neutral-900/80 backdrop-blur-2xl border border-white/10 rounded-3xl p-6 shadow-[0_20px_50px_rgba(0,0,0,0.5)] overflow-hidden"
             >
               {/* Background Glow */}
               <div className="absolute -top-16 -right-16 w-32 h-32 bg-indigo-500/10 rounded-full blur-[60px] pointer-events-none" />
@@ -139,11 +139,11 @@ export function FeedbackPill({ variant = 'floating' }: FeedbackPillProps) {
                 ) : (
                   <form onSubmit={handleSubmit} className="space-y-5">
                     {/* Feedback Type Toggle */}
-                    <div className="flex gap-2 p-1 bg-white/5 rounded-lg border border-white/5">
+                    <div className="flex gap-2 p-1 bg-white/5 rounded-xl border border-white/5">
                       <button
                         type="button"
                         onClick={() => setType('feature')}
-                        className={`flex-1 flex items-center justify-center gap-2 py-1.5 rounded-md text-xs font-medium transition-all ${
+                        className={`flex-1 flex items-center justify-center gap-2 py-2 rounded-lg text-xs font-medium transition-all ${
                           type === 'feature' 
                           ? 'bg-white/10 text-white shadow-sm ring-1 ring-white/10' 
                           : 'text-neutral-500 hover:text-neutral-300'
@@ -155,7 +155,7 @@ export function FeedbackPill({ variant = 'floating' }: FeedbackPillProps) {
                       <button
                         type="button"
                         onClick={() => setType('bug')}
-                        className={`flex-1 flex items-center justify-center gap-2 py-1.5 rounded-md text-xs font-medium transition-all ${
+                        className={`flex-1 flex items-center justify-center gap-2 py-2 rounded-lg text-xs font-medium transition-all ${
                           type === 'bug' 
                           ? 'bg-white/10 text-white shadow-sm ring-1 ring-white/10' 
                           : 'text-neutral-500 hover:text-neutral-300'
@@ -173,7 +173,7 @@ export function FeedbackPill({ variant = 'floating' }: FeedbackPillProps) {
                         value={message}
                         onChange={(e) => setMessage(e.target.value)}
                         placeholder={type === 'feature' ? "What would you like to see?" : "What's broken?"}
-                        className="w-full h-24 bg-white/5 border border-white/10 rounded-xl p-3 text-sm text-white placeholder:text-neutral-700 focus:outline-none focus:ring-1 focus:ring-white/10 transition-all resize-none"
+                        className="w-full h-28 bg-white/5 border border-white/10 rounded-2xl p-4 text-sm text-white placeholder:text-neutral-700 focus:outline-none focus:ring-1 focus:ring-white/10 transition-all resize-none"
                         required
                       />
                     </div>
@@ -181,7 +181,7 @@ export function FeedbackPill({ variant = 'floating' }: FeedbackPillProps) {
                     <HoverButton
                       type="submit"
                       disabled={isSubmitting || !message.trim()}
-                      className="w-full py-3 flex items-center justify-center gap-2 text-sm"
+                      className="w-full py-4 flex items-center justify-center gap-2 text-sm rounded-2xl"
                     >
                       {isSubmitting ? (
                         <Loader2 className="w-4 h-4 animate-spin" />

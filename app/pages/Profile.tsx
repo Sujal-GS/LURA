@@ -692,7 +692,7 @@ export default function Profile() {
                   <div className="w-24 h-24 rounded-3xl p-1 bg-gradient-to-tr from-blue-500 to-purple-600 shadow-2xl mb-4">
                     <div className="bg-black w-full h-full rounded-[20px] overflow-hidden">
                       <img 
-                        src="https://media.licdn.com/dms/image/v2/D5603AQEv-qK6E6q22A/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1715573434190?e=1741219200&v=beta&t=48A-8x_q58A_q5_q5_q5_q5_q5_q5_q5_q5_q5" 
+                        src="/dev.jpg" 
                         alt="Sujal G S" 
                         className="w-full h-full object-cover"
                         onError={(e) => {

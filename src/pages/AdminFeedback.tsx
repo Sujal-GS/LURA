@@ -140,15 +140,31 @@ export default function AdminTerminal() {
   const [showScrollTop, setShowScrollTop] = useState(false);
 
   useEffect(() => {
-    const scrollContainer = document.querySelector('main');
-    if (!scrollContainer) return;
+    // Need to find the scrollable container (main tag in AppLayout)
+    const findContainer = () => document.querySelector('main');
+    let scrollContainer = findContainer();
 
     const handleScroll = () => {
-      setShowScrollTop(scrollContainer.scrollTop > 400);
+      if (scrollContainer) {
+        setShowScrollTop(scrollContainer.scrollTop > 400);
+      }
     };
 
-    scrollContainer.addEventListener('scroll', handleScroll);
-    return () => scrollContainer.removeEventListener('scroll', handleScroll);
+    if (scrollContainer) {
+      scrollContainer.addEventListener('scroll', handleScroll);
+    } else {
+      // Fallback if main isn't ready immediately
+      const timer = setInterval(() => {
+        scrollContainer = findContainer();
+        if (scrollContainer) {
+          scrollContainer.addEventListener('scroll', handleScroll);
+          clearInterval(timer);
+        }
+      }, 100);
+      return () => clearInterval(timer);
+    }
+
+    return () => scrollContainer?.removeEventListener('scroll', handleScroll);
   }, []);
 
   const scrollToTop = () => {
@@ -377,15 +393,17 @@ export default function AdminTerminal() {
       {/* Scroll to Top Button */}
       <AnimatePresence>
         {showScrollTop && (
-          <motion.button
-            initial={{ opacity: 0, scale: 0.5, y: 20 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.5, y: 20 }}
-            onClick={scrollToTop}
-            className="fixed bottom-32 right-8 w-14 h-14 rounded-full bg-white/10 backdrop-blur-2xl border border-white/20 flex items-center justify-center text-white shadow-2xl hover:bg-white/20 transition-all z-50 group"
-          >
-            <ArrowUp className="w-6 h-6 group-hover:-translate-y-1 transition-transform" />
-          </motion.button>
+          <div className="fixed bottom-24 left-1/2 -translate-x-1/2 w-full max-w-md px-4 pointer-events-none z-[60]">
+            <motion.button
+              initial={{ opacity: 0, scale: 0.5, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.5, y: 20 }}
+              onClick={scrollToTop}
+              className="pointer-events-auto absolute right-8 w-12 h-12 rounded-full bg-white/10 backdrop-blur-2xl border border-white/20 flex items-center justify-center text-white shadow-2xl hover:bg-white/20 transition-all group"
+            >
+              <ArrowUp className="w-5 h-5 group-hover:-translate-y-1 transition-transform" />
+            </motion.button>
+          </div>
         )}
       </AnimatePresence>
     </div>

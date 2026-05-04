@@ -202,7 +202,7 @@ export default function AppLayout() {
 
       <main 
         className="relative z-10 w-full max-w-md h-full bg-black flex flex-col overflow-y-auto overflow-x-hidden scrollbar-hide" 
-        style={{ paddingBottom: isDockVisible ? 'calc(88px + env(safe-area-inset-bottom))' : '0px' }}
+        style={{ paddingBottom: '0px' }}
       >
         {/* Top Header - Hide if we are in ANY message route or if dock is hidden */}
         {isDockVisible && !location.pathname.startsWith('/messages') && (

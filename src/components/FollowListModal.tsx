@@ -43,8 +43,8 @@ export function FollowListModal({ isOpen, onClose, userId, type }: FollowListMod
 
         if (error) throw error
         if (data) {
-          // Flatten the response
-          const profiles = data.map((item: any) => item.profiles)
+          // Flatten the response and filter out nulls (banned/hidden users)
+          const profiles = data.map((item: any) => item.profiles).filter(Boolean)
           setUsers(profiles)
         }
       } else if (type === 'following') {
@@ -55,8 +55,8 @@ export function FollowListModal({ isOpen, onClose, userId, type }: FollowListMod
 
         if (error) throw error
         if (data) {
-          // Flatten the response
-          const profiles = data.map((item: any) => item.profiles)
+          // Flatten the response and filter out nulls (banned/hidden users)
+          const profiles = data.map((item: any) => item.profiles).filter(Boolean)
           setUsers(profiles)
         }
       } else if (type === 'views') {

@@ -47,7 +47,9 @@ export function CommentsDrawer({ isOpen, onClose, postId }: CommentsDrawerProps)
       .order('created_at', { ascending: true })
 
     if (!error && data) {
-      setComments(data as Comment[])
+      // Filter out comments from banned/hidden users
+      const validComments = (data as any[]).filter(c => c.profiles !== null)
+      setComments(validComments as Comment[])
     }
   }
 

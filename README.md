@@ -12,6 +12,11 @@ Lura is a premium, minimalist social media platform designed for authentic shari
 > **🤝 Contributions**: We welcome contributions! Feel free to open issues or submit pull requests to help improve Lura.
 >
 > **📱 Coming Soon**: A native **Android version** of Lura is currently in development and will be released soon!
+>
+> **⚠️ Usage & Conduct**: 
+> - Please be **considerate and respectful** in what you post. 
+> - Due to **storage limitations**, we kindly ask users to post sparingly. 
+> - Any **inappropriate behavior** or violation of these guidelines will result in an immediate **permanent ban** from the platform and all services.
 
 ---
 

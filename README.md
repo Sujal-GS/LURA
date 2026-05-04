@@ -26,6 +26,7 @@ Lura is a premium, minimalist social media platform designed for authentic shari
   - Exclusive access to premium-only posts.
   - Golden profile badges (Crown) and glowing borders.
   - Extended story durations (72 hours).
+  - *Note: To enable premium features for your account, please contact the developer.*
 - **📱 Modern Interactions**: 
   - Double-tap to like with a custom glowing ripple effect.
   - Integrated Direct Messaging system.
@@ -93,3 +94,6 @@ Lura uses Supabase Row Level Security (RLS) to ensure that:
 Distributed under the MIT License. See `LICENSE` for more information.
 
 Developed with ❤️ by [Sujal-GS](https://github.com/Sujal-GS)
+
+---
+*For Lura+ Premium access or inquiries, please contact the developer directly.*

@@ -37,7 +37,7 @@ Lura is a premium, minimalist social media platform designed for authentic shari
 - **🔍 Intelligent Discovery**: An algorithmic "Trending" feed that surfaces popular content while keeping recent posts at the forefront.
 
 ### 💎 Lura+ Premium
-*Unlock the full potential of the platform with our exclusive tier.*
+*Unlock the full potential of the platform with our exclusive tier. Please note that Lura+ features are dynamic; new capabilities may be introduced, and existing ones may be removed or replaced as the service evolves.*
 - **👻 Ghost Mode**: Browse the platform and view stories without leaving a trace.
 - **🏰 Exclusive Content**: Access to premium-only posts and media.
 - **⏳ Extended Stories**: Keep your moments alive longer with 72-hour story visibility.

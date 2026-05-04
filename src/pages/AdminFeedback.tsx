@@ -280,6 +280,8 @@ export default function AdminTerminal() {
                       </div>
                     </motion.div>
                   ))}
+                  {/* Bottom Spacer */}
+                  <div className="h-40" />
                 </div>
               )}
             </motion.div>
@@ -364,6 +366,8 @@ export default function AdminTerminal() {
                       </div>
                     </div>
                   ))}
+                  {/* Bottom Spacer */}
+                  <div className="h-40" />
                 </div>
               )}
             </motion.div>

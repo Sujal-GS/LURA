@@ -5,7 +5,7 @@
 Lura is a premium, minimalist social media platform designed for authentic sharing and exclusive content. Built with a focus on aesthetics and privacy, Lura offers a sleek dark-mode experience with advanced features like ephemeral stories, anonymous posting, and a curated "Lura+" premium ecosystem.
 
 > [!WARNING]
-> **🚧 Under Active Development**: This is currently a **Preview/Beta** version of the web app. Expect bugs and unfinished features as we refine the experience. 
+> **🚧 Under Active Development**: This is currently a **Preview/Beta** version of the web app. Expect bugs and unfinished features as we refine the experience. Some features may be removed or replaced as development progresses.
 > 
 > **🤝 Contributions**: We welcome contributions! Feel free to open issues or submit pull requests to help improve Lura.
 >
@@ -44,8 +44,8 @@ Lura is a premium, minimalist social media platform designed for authentic shari
 - **👑 Elite Presence**: Stand out with golden profile badges (Crown) and glowing golden borders.
 - **⚡ Priority Reach**: Enjoy increased visibility in the discovery feed.
 
-> [!NOTE]
-> **To enable Lura+ Premium features for your account, please contact the developer.**
+> [!IMPORTANT]
+> **Demo Only**: Any pricing or payment information shown within the app is for **demonstration purposes only** and is not real. To enable Lura+ Premium features for your account, please contact the developer.
 
 ---
 

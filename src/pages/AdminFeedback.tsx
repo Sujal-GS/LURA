@@ -57,23 +57,26 @@ export default function AdminTerminal() {
     }
   };
 
+  const [fetchError, setFetchError] = useState<string | null>(null);
+
   const fetchFeedback = async () => {
     setLoading(true);
+    setFetchError(null);
     try {
-      let query = supabase
-        .from('feedback')
-        .select('*, profiles(username, avatar_url)')
-        .order('created_at', { ascending: false });
-      
+      // Simplest possible query to see if data exists
+      let query = supabase.from('feedback').select('*').order('created_at', { ascending: false });
       if (feedbackFilter !== 'all') query = query.eq('type', feedbackFilter);
       
       const { data, error } = await query;
       if (error) throw error;
       setFeedback(data || []);
-    } catch (err) {
+    } catch (err: any) {
       console.error('Error fetching feedback:', err);
+      setFetchError(err.message || 'Failed to fetch data');
     } finally {
-      setLoading(false);
+      setLoading(true);
+      // Artificially keep loading for a second to show state
+      setTimeout(() => setLoading(false), 500);
     }
   };
 
@@ -200,7 +203,13 @@ export default function AdminTerminal() {
                 ))}
               </div>
 
-              {loading ? (
+              {fetchError ? (
+                <div className="bg-red-500/10 border border-red-500/20 rounded-[2rem] p-8 text-center">
+                  <ShieldAlert className="w-8 h-8 text-red-500 mx-auto mb-4" />
+                  <p className="text-red-500 font-bold mb-2">Access Error</p>
+                  <p className="text-neutral-500 text-sm">{fetchError}</p>
+                </div>
+              ) : loading ? (
                 <div className="py-20 flex justify-center"><div className="w-8 h-8 border-2 border-white/10 border-t-white rounded-full animate-spin" /></div>
               ) : feedback.length === 0 ? (
                 <p className="text-center py-20 text-neutral-600 italic">No feedback reported.</p>
@@ -234,15 +243,8 @@ export default function AdminTerminal() {
                       </div>
                       <div className="flex items-center gap-2 text-neutral-500">
                         <div className="flex items-center gap-2 mr-auto">
-                          <img 
-                            src={item.profiles?.avatar_url || `https://ui-avatars.com/api/?name=${item.profiles?.username || 'User'}`} 
-                            className="w-5 h-5 rounded-full object-cover border border-white/10"
-                          />
-                          <span className="text-[11px] font-bold text-neutral-400">
-                            @{item.profiles?.username || 'unknown'}
-                          </span>
-                          <span className="text-neutral-700 text-[10px]">•</span>
-                          <span className="text-[10px] font-medium text-neutral-600">{item.user_email || 'No Email'}</span>
+                          <Mail className="w-3.5 h-3.5 opacity-50" />
+                          <span className="text-[11px] font-semibold">{item.user_email || 'Anonymous'}</span>
                         </div>
                         <span className="text-[9px] text-neutral-700 font-mono">ID: {item.id.slice(0, 8)}</span>
                       </div>

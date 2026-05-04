@@ -5,13 +5,21 @@ import { supabase } from '../lib/supabase';
 import { useAuth } from './AuthProvider';
 import { HoverButton } from './ui/hover-button';
 
+import { useLocation } from 'react-router-dom';
+
 export function FeedbackPill() {
+  const location = useLocation();
   const [isOpen, setIsOpen] = useState(false);
   const [type, setType] = useState<'feature' | 'bug'>('feature');
   const [message, setMessage] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const { session } = useAuth();
+
+  // Hide on messages and chat pages
+  if (location.pathname.startsWith('/messages')) {
+    return null;
+  }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -56,10 +64,10 @@ export function FeedbackPill() {
         whileHover={{ scale: 1.02, opacity: 1 }}
         whileTap={{ scale: 0.98 }}
         onClick={() => setIsOpen(true)}
-        className="fixed bottom-6 right-6 z-[100] flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 backdrop-blur-md border border-white/10 shadow-lg group hover:bg-white/10 transition-all duration-300 opacity-60 hover:opacity-100"
+        className="fixed bottom-20 md:bottom-6 right-6 z-[100] flex items-center gap-2 px-3 py-1.5 md:px-3 md:py-1.5 rounded-full bg-white/5 backdrop-blur-md border border-white/10 shadow-lg group hover:bg-white/10 transition-all duration-300 opacity-60 hover:opacity-100"
       >
-        <MessageSquarePlus className="w-3.5 h-3.5 text-neutral-500 group-hover:text-neutral-300 transition-colors" />
-        <span className="text-[11px] font-medium tracking-tight text-neutral-500 group-hover:text-neutral-300 uppercase">Feedback</span>
+        <MessageSquarePlus className="w-4 h-4 md:w-3.5 md:h-3.5 text-neutral-500 group-hover:text-neutral-300 transition-colors" />
+        <span className="hidden md:block text-[11px] font-medium tracking-tight text-neutral-500 group-hover:text-neutral-300 uppercase">Feedback</span>
       </motion.button>
 
       {/* Modal Backdrop */}

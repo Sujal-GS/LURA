@@ -305,20 +305,21 @@ export default function AdminTerminal() {
                 <div className="grid gap-4">
                   {users.map((user) => (
                     <div key={user.id} className={`bg-neutral-900/40 backdrop-blur-2xl border ${user.is_banned ? 'border-red-500/20' : 'border-white/10'} rounded-[2.5rem] p-5 md:p-7 transition-all hover:bg-neutral-900/60`}>
-                      <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
-                        <div className="flex items-center gap-4 md:gap-6 flex-1 min-w-0">
-                          <div className="relative flex-shrink-0">
-                            <img 
-                              src={user.avatar_url || `https://ui-avatars.com/api/?name=${user.username}`} 
-                              className={`w-14 h-14 md:w-16 md:h-16 rounded-full border-2 ${user.is_premium ? 'border-yellow-500/40' : 'border-white/10'} object-cover`}
-                            />
-                            {user.is_admin && (
-                              <div className="absolute -bottom-1 -right-1 bg-blue-500 rounded-full p-1 border-2 border-black">
-                                <ShieldCheck className="w-2.5 h-2.5 text-white" />
-                              </div>
-                            )}
-                          </div>
-                          <div className="min-w-0 flex-1">
+                      <div className="flex items-start gap-4 md:gap-6">
+                        <div className="relative flex-shrink-0">
+                          <img 
+                            src={user.avatar_url || `https://ui-avatars.com/api/?name=${user.username}`} 
+                            className={`w-14 h-14 md:w-16 md:h-16 rounded-full border-2 ${user.is_premium ? 'border-yellow-500/40' : 'border-white/10'} object-cover`}
+                          />
+                          {user.is_admin && (
+                            <div className="absolute -bottom-1 -right-1 bg-blue-500 rounded-full p-1 border-2 border-black">
+                              <ShieldCheck className="w-2.5 h-2.5 text-white" />
+                            </div>
+                          )}
+                        </div>
+
+                        <div className="min-w-0 flex-1 space-y-4">
+                          <div>
                             <div className="flex flex-wrap items-center gap-2 mb-1">
                               <h3 className="text-base md:text-xl font-bold text-white">@{user.username}</h3>
                               {user.is_premium && <Crown className="w-4 h-4 text-yellow-500" />}
@@ -328,34 +329,32 @@ export default function AdminTerminal() {
                               <span className="text-[10px] font-black uppercase tracking-widest text-red-500 mt-1.5 block">Banned User</span>
                             )}
                           </div>
-                        </div>
 
-                        <div className="flex flex-wrap items-center gap-2 flex-shrink-0">
-                          {/* Premium Action */}
-                          <button
-                            onClick={() => togglePremium(user.id, user.is_premium)}
-                            className={`px-4 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-2 border ${
-                              user.is_premium 
-                              ? 'bg-yellow-500/10 text-yellow-500 border-yellow-500/20 hover:bg-yellow-500/20' 
-                              : 'bg-white/5 text-neutral-400 border-white/10 hover:text-white hover:border-white/20'
-                            }`}
-                          >
-                            <Crown className="w-3.5 h-3.5" />
-                            {user.is_premium ? 'Remove Premium' : 'Grant Premium'}
-                          </button>
+                          <div className="flex flex-wrap items-center gap-2 sm:gap-3">
+                            <button
+                              onClick={() => togglePremium(user.id, user.is_premium)}
+                              className={`px-4 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-2 border ${
+                                user.is_premium 
+                                ? 'bg-yellow-500/10 text-yellow-500 border-yellow-500/20 hover:bg-yellow-500/20' 
+                                : 'bg-white/5 text-neutral-400 border-white/10 hover:text-white hover:border-white/20'
+                              }`}
+                            >
+                              <Crown className="w-3.5 h-3.5" />
+                              {user.is_premium ? 'Remove Premium' : 'Grant Premium'}
+                            </button>
 
-                          {/* Ban Action */}
-                          <button
-                            onClick={() => toggleBan(user.id, user.is_banned)}
-                            className={`px-4 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-2 border ${
-                              user.is_banned 
-                              ? 'bg-green-500/10 text-green-500 border-green-500/20 hover:bg-green-500/20' 
-                              : 'bg-red-500/10 text-red-500 border-red-500/20 hover:bg-red-500/20'
-                            }`}
-                          >
-                            {user.is_banned ? <UserCheck className="w-3.5 h-3.5" /> : <Ban className="w-3.5 h-3.5" />}
-                            {user.is_banned ? 'Unban User' : 'Ban User'}
-                          </button>
+                            <button
+                              onClick={() => toggleBan(user.id, user.is_banned)}
+                              className={`px-4 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-2 border ${
+                                user.is_banned 
+                                ? 'bg-green-500/10 text-green-500 border-green-500/20 hover:bg-green-500/20' 
+                                : 'bg-red-500/10 text-red-500 border-red-500/20 hover:bg-red-500/20'
+                              }`}
+                            >
+                              {user.is_banned ? <UserCheck className="w-3.5 h-3.5" /> : <Ban className="w-3.5 h-3.5" />}
+                              {user.is_banned ? 'Unban User' : 'Ban User'}
+                            </button>
+                          </div>
                         </div>
                       </div>
                     </div>

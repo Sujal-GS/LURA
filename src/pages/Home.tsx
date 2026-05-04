@@ -312,13 +312,6 @@ export function PostCard({
                 <Crown className="w-3.5 h-3.5 text-yellow-400 drop-shadow-[0_0_5px_rgba(250,204,21,0.6)]" />
               )}
             </div>
-            {!post.is_anonymous && post.profiles?.is_banned && (
-              <div className="flex items-center gap-1 mt-0.5">
-                <span className="px-1.5 py-0.5 rounded-md bg-red-500/20 border border-red-500/30 text-red-500 text-[9px] font-black uppercase tracking-[0.1em] shadow-[0_0_10px_rgba(239,68,68,0.1)]">
-                  BANNED ACCOUNT
-                </span>
-              </div>
-            )}
             {post.is_premium && (
               <span className="text-[10px] font-bold tracking-widest text-yellow-500/80 uppercase">Lura+ Exclusive</span>
             )}

@@ -125,13 +125,10 @@ export default function Signup() {
 
           {/* Logo & Header */}
           <motion.div variants={transitionVariants} className="mb-8 text-center flex flex-col items-center">
-            <div className="mb-4 w-12 h-12 rounded-xl flex items-center justify-center bg-gradient-to-br from-neutral-800 to-black border border-neutral-800 shadow-[0_0_40px_rgba(255,255,255,0.05)]">
-              <Hexagon className="w-6 h-6 text-white" strokeWidth={1.5} />
-            </div>
-            <h1 className="text-3xl font-bold tracking-tight text-balance">
+            <h1 className="text-4xl md:text-5xl font-normal tracking-tight bg-clip-text text-transparent bg-gradient-to-b from-neutral-100 to-neutral-400 whitespace-nowrap">
               Join Lura
             </h1>
-            <p className="mt-2 text-neutral-400 text-sm max-w-sm text-balance">
+            <p className="mt-3 text-neutral-400 text-sm max-w-sm text-balance">
               Create an account to start building your network.
             </p>
           </motion.div>

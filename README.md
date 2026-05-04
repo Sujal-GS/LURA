@@ -4,6 +4,13 @@
 
 Lura is a premium, minimalist social media platform designed for authentic sharing and exclusive content. Built with a focus on aesthetics and privacy, Lura offers a sleek dark-mode experience with advanced features like ephemeral stories, anonymous posting, and a curated "Lura+" premium ecosystem.
 
+> [!WARNING]
+> **🚧 Under Active Development**: This is currently a **Preview/Beta** version of the web app. Expect bugs and unfinished features as we refine the experience. 
+> 
+> **🤝 Contributions**: We welcome contributions! Feel free to open issues or submit pull requests to help improve Lura.
+>
+> **📱 Coming Soon**: A native **Android version** of Lura is currently in development and will be released soon!
+
 ---
 
 ## 📸 Showcase

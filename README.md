@@ -18,20 +18,27 @@ Lura is a premium, minimalist social media platform designed for authentic shari
 
 ---
 
-## ✨ Key Features
+## ✨ Features
 
-- **🌀 Ephemeral Stories**: Share moments that disappear. Free users get 24-hour stories, while **Lura+** subscribers enjoy extended 72-hour visibility.
-- **👤 True Anonymity**: Post thoughts and media without revealing your identity. Anonymous posts are marked with a purple shroud, keeping your profile private.
-- **💎 Lura+ Premium**: Unlock the full potential of the platform.
-  - Exclusive access to premium-only posts.
-  - Golden profile badges (Crown) and glowing borders.
-  - Extended story durations (72 hours).
-  - *Note: To enable premium features for your account, please contact the developer.*
+### 🌐 Core Features (Available to All)
+- **👤 True Anonymity**: Share thoughts and media freely without revealing your identity. Anonymous posts are marked with a distinct purple shroud, ensuring your privacy is never compromised.
+- **🌀 Ephemeral Stories**: Share moments that disappear after 24 hours.
 - **📱 Modern Interactions**: 
-  - Double-tap to like with a custom glowing ripple effect.
-  - Integrated Direct Messaging system.
+  - Double-tap to like with a custom glowing ripple animation.
+  - Integrated Direct Messaging system for private conversations.
   - Real-time notifications and activity tracking.
 - **🔍 Intelligent Discovery**: An algorithmic "Trending" feed that surfaces popular content while keeping recent posts at the forefront.
+
+### 💎 Lura+ Premium
+*Unlock the full potential of the platform with our exclusive tier.*
+- **👻 Ghost Mode**: Browse the platform and view stories without leaving a trace.
+- **🏰 Exclusive Content**: Access to premium-only posts and media.
+- **⏳ Extended Stories**: Keep your moments alive longer with 72-hour story visibility.
+- **👑 Elite Presence**: Stand out with golden profile badges (Crown) and glowing golden borders.
+- **⚡ Priority Reach**: Enjoy increased visibility in the discovery feed.
+
+> [!NOTE]
+> **To enable Lura+ Premium features for your account, please contact the developer.**
 
 ---
 

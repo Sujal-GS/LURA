@@ -261,6 +261,8 @@ export default function Profile() {
     }
   }
 
+  const [isAboutDevOpen, setIsAboutDevOpen] = useState(false)
+
   const isOwnProfile = !userId || userId === session?.user?.id
 
   // We should default to profile data if viewing someone else's profile.
@@ -620,6 +622,17 @@ export default function Profile() {
                   <Bookmark className="w-4 h-4 text-neutral-500" />
                 </button>
 
+                <button
+                  onClick={() => setIsAboutDevOpen(true)}
+                  className="flex items-center justify-between w-full px-4 py-3.5 rounded-xl hover:bg-white/5 transition-colors text-left"
+                >
+                  <div className="flex flex-col">
+                    <span className="font-medium text-sm">About the Developer</span>
+                    <span className="text-[10px] text-neutral-500">Meet the architect of Lura</span>
+                  </div>
+                  <ChevronRight className="w-4 h-4 text-neutral-500" />
+                </button>
+
                 <div className="h-px bg-white/5 my-1" />
 
                 <button
@@ -636,6 +649,109 @@ export default function Profile() {
               </div>
             </motion.div>
           </>
+        )}
+      </AnimatePresence>
+
+      {/* About Dev Modal */}
+      <AnimatePresence>
+        {isAboutDevOpen && (
+          <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setIsAboutDevOpen(false)}
+              className="absolute inset-0 bg-black/80 backdrop-blur-md"
+            />
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.9, y: 20 }}
+              className="relative w-full max-w-md bg-[#0a0a0a] border border-white/10 rounded-[32px] shadow-2xl overflow-hidden"
+            >
+              <div className="absolute top-4 right-4 z-10">
+                <button 
+                  onClick={() => setIsAboutDevOpen(false)}
+                  className="p-2 bg-white/10 hover:bg-white/20 rounded-full transition-colors"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+
+              <div className="flex flex-col">
+                {/* Header/Hero */}
+                <div className="h-32 bg-gradient-to-br from-neutral-900 to-black border-b border-white/5 flex items-center justify-center relative overflow-hidden">
+                  <div className="absolute inset-0 opacity-20">
+                    <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_120%,#3b82f6,transparent)]" />
+                  </div>
+                  <h3 className="text-white/20 font-black text-6xl tracking-tighter select-none">ARCHITECT</h3>
+                </div>
+
+                {/* Content */}
+                <div className="px-6 pb-8 -mt-12 relative">
+                  <div className="w-24 h-24 rounded-3xl p-1 bg-gradient-to-tr from-blue-500 to-purple-600 shadow-2xl mb-4">
+                    <div className="bg-black w-full h-full rounded-[20px] overflow-hidden">
+                      <img 
+                        src="https://media.licdn.com/dms/image/v2/D5603AQEv-qK6E6q22A/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1715573434190?e=1741219200&v=beta&t=48A-8x_q58A_q5_q5_q5_q5_q5_q5_q5_q5_q5" 
+                        alt="Sujal G S" 
+                        className="w-full h-full object-cover"
+                        onError={(e) => {
+                          (e.target as HTMLImageElement).src = `https://ui-avatars.com/api/?name=Sujal+GS&background=000&color=fff`
+                        }}
+                      />
+                    </div>
+                  </div>
+
+                  <div className="flex flex-col gap-1 mb-6">
+                    <h2 className="text-2xl font-bold tracking-tight">Sujal G S</h2>
+                    <p className="text-blue-400 text-sm font-medium">Full Stack Architect & Cybersecurity Specialist</p>
+                    <p className="text-neutral-500 text-xs">NMAM Institute of Technology</p>
+                  </div>
+
+                  <div className="space-y-6">
+                    <div>
+                      <h4 className="text-[10px] font-bold text-neutral-500 uppercase tracking-widest mb-2">The Mission</h4>
+                      <p className="text-sm text-neutral-300 leading-relaxed">
+                        Sujal is a Computer Science undergraduate focused on Cybersecurity and AI. 
+                        He is the architect behind <span className="text-white font-semibold">Lura</span>, 
+                        a minimalist social platform designed for real-time performance and absolute data privacy.
+                      </p>
+                    </div>
+
+                    <div>
+                      <h4 className="text-[10px] font-bold text-neutral-500 uppercase tracking-widest mb-2">Engineering Edge</h4>
+                      <div className="flex flex-wrap gap-2">
+                        {['Ethical Hacking', 'AI/ML', 'Real-time Arch', 'Supabase', 'React'].map(skill => (
+                          <span key={skill} className="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[10px] font-medium text-neutral-300">
+                            {skill}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div className="pt-4 flex gap-3">
+                      <a 
+                        href="https://www.linkedin.com/in/sujal-g-s/" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="flex-1 bg-white text-black font-bold py-3 rounded-2xl text-center text-xs hover:bg-neutral-200 transition-colors"
+                      >
+                        LinkedIn
+                      </a>
+                      <a 
+                        href="https://github.com/Sujal-GS" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="flex-1 bg-white/5 border border-white/10 text-white font-bold py-3 rounded-2xl text-center text-xs hover:bg-white/10 transition-colors"
+                      >
+                        GitHub
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </div>
         )}
       </AnimatePresence>
     </div>

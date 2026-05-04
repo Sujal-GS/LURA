@@ -79,11 +79,15 @@ export default function AppLayout() {
     if (!session?.user?.id) return
     supabase
       .from('profiles')
-      .select('is_premium, has_accepted_terms, is_admin')
+      .select('is_premium, has_accepted_terms, is_admin, is_banned')
       .eq('id', session.user.id)
       .single()
       .then(({ data }) => {
         if (data) {
+          if (data.is_banned) {
+            signOut().then(() => navigate('/login', { state: { message: 'Your account has been permanently banned for violating platform guidelines.' } }));
+            return;
+          }
           setIsPremiumUser(data.is_premium || false)
           setIsAdmin(data.is_admin || false)
           if (data.has_accepted_terms === false) {

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate, useLocation } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ArrowRight, Hexagon, Loader2, ArrowLeft, CheckCircle2 } from 'lucide-react'
 import { supabase } from '../lib/supabase'
@@ -14,6 +14,15 @@ export default function Login() {
   const [forgotMode, setForgotMode] = useState(false)
   const [resetSent, setResetSent] = useState(false)
   const navigate = useNavigate()
+  const location = useLocation()
+
+  useEffect(() => {
+    if (location.state?.message) {
+      setError(location.state.message)
+      // Clear state so it doesn't persist on refresh
+      window.history.replaceState({}, document.title)
+    }
+  }, [location])
 
   // Rate limiting: track failed attempts in localStorage
   const RATE_LIMIT_KEY = 'lura_login_attempts'

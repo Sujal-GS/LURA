@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { useParams, useNavigate, useOutletContext } from 'react-router-dom'
 import { ArrowLeft, Loader2 } from 'lucide-react'
 import { supabase } from '../lib/supabase'
-import { PostCard, type Post } from './Home'
+import { PostCard } from '../components/PostCard'
+import { type Post } from './Home'
 
 export default function PostDetail() {
   const { postId } = useParams<{ postId: string }>()

@@ -53,13 +53,13 @@ export function FeedbackPill() {
       <motion.button
         initial={{ scale: 0, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
+        whileHover={{ scale: 1.02, opacity: 1 }}
+        whileTap={{ scale: 0.98 }}
         onClick={() => setIsOpen(true)}
-        className="fixed bottom-6 right-6 z-[100] flex items-center gap-2 px-4 py-2.5 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 shadow-[0_8px_32px_rgba(0,0,0,0.5)] group hover:bg-white/20 transition-all duration-300"
+        className="fixed bottom-6 right-6 z-[100] flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 backdrop-blur-md border border-white/10 shadow-lg group hover:bg-white/10 transition-all duration-300 opacity-60 hover:opacity-100"
       >
-        <MessageSquarePlus className="w-5 h-5 text-indigo-400 group-hover:text-white transition-colors" />
-        <span className="text-sm font-medium tracking-wide">Feedback</span>
+        <MessageSquarePlus className="w-3.5 h-3.5 text-neutral-500 group-hover:text-neutral-300 transition-colors" />
+        <span className="text-[11px] font-medium tracking-tight text-neutral-500 group-hover:text-neutral-300 uppercase">Feedback</span>
       </motion.button>
 
       {/* Modal Backdrop */}
@@ -79,21 +79,21 @@ export function FeedbackPill() {
               initial={{ scale: 0.9, opacity: 0, y: 20 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.9, opacity: 0, y: 20 }}
-              className="relative w-full max-w-md bg-neutral-900 border border-white/10 rounded-3xl p-8 shadow-2xl overflow-hidden"
+              className="relative w-full max-w-sm bg-neutral-900 border border-white/10 rounded-2xl p-6 shadow-2xl overflow-hidden"
             >
               {/* Background Glow */}
-              <div className="absolute -top-24 -right-24 w-48 h-48 bg-indigo-500/20 rounded-full blur-[80px] pointer-events-none" />
+              <div className="absolute -top-16 -right-16 w-32 h-32 bg-indigo-500/10 rounded-full blur-[60px] pointer-events-none" />
               
               <div className="relative z-10">
-                <div className="flex items-center justify-between mb-8">
-                  <h2 className="text-2xl font-normal tracking-tight bg-clip-text text-transparent bg-gradient-to-b from-neutral-100 to-neutral-400">
+                <div className="flex items-center justify-between mb-6">
+                  <h2 className="text-xl font-normal tracking-tight bg-clip-text text-transparent bg-gradient-to-b from-neutral-100 to-neutral-400">
                     Submit Feedback
                   </h2>
                   <button 
                     onClick={() => setIsOpen(false)}
-                    className="p-2 hover:bg-white/10 rounded-full transition-colors text-neutral-400 hover:text-white"
+                    className="p-1.5 hover:bg-white/10 rounded-full transition-colors text-neutral-400 hover:text-white"
                   >
-                    <X className="w-5 h-5" />
+                    <X className="w-4 h-4" />
                   </button>
                 </div>
 
@@ -101,52 +101,52 @@ export function FeedbackPill() {
                   <motion.div 
                     initial={{ opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
-                    className="flex flex-col items-center py-12 text-center"
+                    className="flex flex-col items-center py-8 text-center"
                   >
-                    <div className="w-16 h-16 bg-green-500/20 rounded-full flex items-center justify-center mb-4">
-                      <CheckCircle2 className="w-8 h-8 text-green-400" />
+                    <div className="w-12 h-12 bg-green-500/20 rounded-full flex items-center justify-center mb-3">
+                      <CheckCircle2 className="w-6 h-6 text-green-400" />
                     </div>
-                    <h3 className="text-xl font-medium mb-2">Thank you!</h3>
-                    <p className="text-neutral-400 text-sm">Your feedback helps make Lura better.</p>
+                    <h3 className="text-lg font-medium mb-1">Thank you!</h3>
+                    <p className="text-neutral-500 text-xs text-balance">Your feedback helps make Lura better.</p>
                   </motion.div>
                 ) : (
-                  <form onSubmit={handleSubmit} className="space-y-6">
+                  <form onSubmit={handleSubmit} className="space-y-5">
                     {/* Feedback Type Toggle */}
-                    <div className="flex gap-4 p-1 bg-white/5 rounded-xl border border-white/5">
+                    <div className="flex gap-2 p-1 bg-white/5 rounded-lg border border-white/5">
                       <button
                         type="button"
                         onClick={() => setType('feature')}
-                        className={`flex-1 flex items-center justify-center gap-2 py-2 rounded-lg text-sm font-medium transition-all ${
+                        className={`flex-1 flex items-center justify-center gap-2 py-1.5 rounded-md text-xs font-medium transition-all ${
                           type === 'feature' 
-                          ? 'bg-white/10 text-white shadow-lg ring-1 ring-white/10' 
+                          ? 'bg-white/10 text-white shadow-sm ring-1 ring-white/10' 
                           : 'text-neutral-500 hover:text-neutral-300'
                         }`}
                       >
-                        <MessageSquarePlus className="w-4 h-4" />
+                        <MessageSquarePlus className="w-3.5 h-3.5" />
                         Feature
                       </button>
                       <button
                         type="button"
                         onClick={() => setType('bug')}
-                        className={`flex-1 flex items-center justify-center gap-2 py-2 rounded-lg text-sm font-medium transition-all ${
+                        className={`flex-1 flex items-center justify-center gap-2 py-1.5 rounded-md text-xs font-medium transition-all ${
                           type === 'bug' 
-                          ? 'bg-white/10 text-white shadow-lg ring-1 ring-white/10' 
+                          ? 'bg-white/10 text-white shadow-sm ring-1 ring-white/10' 
                           : 'text-neutral-500 hover:text-neutral-300'
                         }`}
                       >
-                        <Bug className="w-4 h-4" />
+                        <Bug className="w-3.5 h-3.5" />
                         Bug
                       </button>
                     </div>
 
                     {/* Message Input */}
-                    <div className="space-y-2">
-                      <label className="text-xs font-medium text-neutral-400 ml-1">Your message</label>
+                    <div className="space-y-1.5">
+                      <label className="text-[10px] uppercase tracking-wider font-bold text-neutral-600 ml-1">Your message</label>
                       <textarea
                         value={message}
                         onChange={(e) => setMessage(e.target.value)}
-                        placeholder={type === 'feature' ? "What would you like to see in Lura?" : "What's broken?"}
-                        className="w-full h-32 bg-white/5 border border-white/10 rounded-2xl p-4 text-sm text-white placeholder:text-neutral-600 focus:outline-none focus:ring-1 focus:ring-white/20 transition-all resize-none"
+                        placeholder={type === 'feature' ? "What would you like to see?" : "What's broken?"}
+                        className="w-full h-24 bg-white/5 border border-white/10 rounded-xl p-3 text-sm text-white placeholder:text-neutral-700 focus:outline-none focus:ring-1 focus:ring-white/10 transition-all resize-none"
                         required
                       />
                     </div>
@@ -154,13 +154,13 @@ export function FeedbackPill() {
                     <HoverButton
                       type="submit"
                       disabled={isSubmitting || !message.trim()}
-                      className="w-full py-4 flex items-center justify-center gap-2"
+                      className="w-full py-3 flex items-center justify-center gap-2 text-sm"
                     >
                       {isSubmitting ? (
                         <Loader2 className="w-4 h-4 animate-spin" />
                       ) : (
                         <>
-                          <Send className="w-4 h-4" />
+                          <Send className="w-3.5 h-3.5" />
                           <span>Submit Feedback</span>
                         </>
                       )}

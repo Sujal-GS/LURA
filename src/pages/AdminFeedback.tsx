@@ -242,7 +242,7 @@ export default function AdminTerminal() {
                           <Trash2 className="w-4 h-4" />
                         </button>
                       </div>
-                      <div className="bg-black/20 rounded-2xl p-5 border border-white/5 mb-4">
+                      <div className="bg-black/20 rounded-2xl p-5 border border-white/5 mb-4 max-h-48 overflow-y-auto custom-scrollbar">
                         <p className="text-sm text-neutral-300 leading-relaxed font-medium">{item.message}</p>
                       </div>
                       <div className="flex items-center gap-2 text-neutral-500">
@@ -261,6 +261,8 @@ export default function AdminTerminal() {
                       </div>
                     </motion.div>
                   ))}
+                  {/* Bottom Spacer */}
+                  <div className="h-40" />
                 </div>
               )}
             </motion.div>
@@ -340,6 +342,8 @@ export default function AdminTerminal() {
                       </div>
                     </div>
                   ))}
+                  {/* Bottom Spacer */}
+                  <div className="h-40" />
                 </div>
               )}
             </motion.div>

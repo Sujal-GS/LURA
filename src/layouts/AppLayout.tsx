@@ -21,7 +21,7 @@ export default function AppLayout() {
   const [activeToast, setActiveToast] = useState<{ username: string, message: string } | null>(null)
   const navigate = useNavigate()
   const location = useLocation()
-  const { session } = useAuth()
+  const { session, signOut } = useAuth()
   const [isPremiumUser, setIsPremiumUser] = useState(false)
   const [isAdmin, setIsAdmin] = useState(false)
 
@@ -85,7 +85,9 @@ export default function AppLayout() {
       .then(({ data }) => {
         if (data) {
           if (data.is_banned) {
-            signOut().then(() => navigate('/login', { state: { message: 'Your account has been permanently banned for violating platform guidelines.' } }));
+            signOut().then(() => {
+              navigate('/login', { state: { message: 'Your account has been permanently banned for violating platform guidelines.' } });
+            });
             return;
           }
           setIsPremiumUser(data.is_premium || false)

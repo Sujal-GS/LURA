@@ -318,12 +318,12 @@ export default function AdminTerminal() {
                               </div>
                             )}
                           </div>
-                          <div className="min-w-0">
+                          <div className="min-w-0 flex-1">
                             <div className="flex flex-wrap items-center gap-2 mb-1">
-                              <h3 className="text-base md:text-xl font-bold text-white truncate max-w-[150px] md:max-w-none">@{user.username}</h3>
+                              <h3 className="text-base md:text-xl font-bold text-white">@{user.username}</h3>
                               {user.is_premium && <Crown className="w-4 h-4 text-yellow-500" />}
                             </div>
-                            <p className="text-neutral-500 text-xs md:text-sm truncate">{user.full_name || 'No Name'}</p>
+                            <p className="text-neutral-500 text-xs md:text-sm">{user.full_name || 'No Name'}</p>
                             {user.is_banned && (
                               <span className="text-[10px] font-black uppercase tracking-widest text-red-500 mt-1.5 block">Banned User</span>
                             )}

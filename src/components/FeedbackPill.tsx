@@ -8,6 +8,7 @@ import { HoverButton } from './ui/hover-button';
 import { useLocation } from 'react-router-dom';
 
 import { FeedbackModal } from './FeedbackModal';
+import bugIcon from '../assets/bug-feedback.png';
 
 export function FeedbackPill() {
   const location = useLocation();
@@ -30,7 +31,7 @@ export function FeedbackPill() {
         onClick={() => setIsOpen(true)}
         className={`fixed bottom-6 right-6 z-[100] ${isAuthPage ? 'flex' : 'hidden md:flex'} items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 backdrop-blur-md border border-white/10 shadow-lg group hover:bg-white/10 transition-all duration-300 opacity-60 hover:opacity-100`}
       >
-        <MessageSquarePlus className="w-3.5 h-3.5 text-neutral-500 group-hover:text-neutral-300 transition-colors" />
+        <img src={bugIcon} alt="Feedback" className="w-4 h-4 invert opacity-60 group-hover:opacity-100 transition-opacity" />
         <span className="text-[11px] font-medium tracking-tight text-neutral-500 group-hover:text-neutral-300 uppercase">Feedback</span>
       </motion.button>
 

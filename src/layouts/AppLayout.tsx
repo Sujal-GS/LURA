@@ -8,6 +8,7 @@ import { CreatePostModal } from '../components/CreatePostModal'
 import { FeedbackModal } from '../components/FeedbackModal'
 import { supabase } from '../lib/supabase'
 import { useAuth } from '../components/AuthProvider'
+import bugIcon from '../assets/bug-feedback.png'
 
 export default function AppLayout() {
   const [isCreateOpen, setIsCreateOpen] = useState(false)
@@ -139,7 +140,11 @@ export default function AppLayout() {
     { icon: PlusSquare, label: "Create", onClick: () => { setIsCreateOpen(true); setIsDockVisible(false); } },
     { icon: Activity, label: "Activity", isActive: location.pathname === "/activity", hasNotification: hasNewNotification && location.pathname !== '/activity', onClick: () => navigate("/activity") },
     { icon: User, label: "Profile", isActive: location.pathname === "/profile", onClick: () => navigate("/profile") },
-    { icon: MessageSquarePlus, label: "Feedback", onClick: () => setIsFeedbackOpen(true) },
+    { 
+      icon: () => <img src={bugIcon} alt="Feedback" className="w-5 h-5 invert opacity-60 group-hover:opacity-100 transition-opacity" />, 
+      label: "Feedback", 
+      onClick: () => setIsFeedbackOpen(true) 
+    },
   ]
 
   return (

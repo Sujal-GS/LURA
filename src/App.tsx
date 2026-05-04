@@ -13,6 +13,7 @@ import ResetPassword from './pages/ResetPassword'
 import MessagesList from './pages/MessagesList'
 import Chat from './pages/Chat'
 import Premium from './pages/Premium'
+import AdminFeedback from './pages/AdminFeedback'
 
 // A wrapper for protected routes
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
@@ -55,6 +56,7 @@ function AppRoutes() {
         <Route path="/messages" element={<MessagesList />} />
         <Route path="/messages/:conversationId" element={<Chat />} />
         <Route path="/premium" element={<Premium />} />
+        <Route path="/admin/feedback" element={<AdminFeedback />} />
       </Route>
     </Routes>
   )

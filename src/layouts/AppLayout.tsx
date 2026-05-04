@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Outlet } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { DockMorph } from '../components/ui/dock-morph'
-import { Hexagon, Home, Search, PlusSquare, User, Activity, MessageCircle, Crown, MessageSquarePlus } from 'lucide-react'
+import { Hexagon, Home, Search, PlusSquare, User, Activity, MessageCircle, Crown, MessageSquarePlus, ShieldAlert } from 'lucide-react'
 import { useNavigate, useLocation } from 'react-router-dom'
 import { CreatePostModal } from '../components/CreatePostModal'
 import { FeedbackModal } from '../components/FeedbackModal'
@@ -23,6 +23,7 @@ export default function AppLayout() {
   const location = useLocation()
   const { session } = useAuth()
   const [isPremiumUser, setIsPremiumUser] = useState(false)
+  const [isAdmin, setIsAdmin] = useState(false)
 
   // Fetch unseen notifications count
   useEffect(() => {
@@ -73,17 +74,18 @@ export default function AppLayout() {
     }
   }, [session?.user?.id])
 
-  // Fetch premium status & onboarding status
+  // Fetch profile status (premium, onboarding, admin)
   useEffect(() => {
     if (!session?.user?.id) return
     supabase
       .from('profiles')
-      .select('is_premium, has_accepted_terms')
+      .select('is_premium, has_accepted_terms, is_admin')
       .eq('id', session.user.id)
       .single()
       .then(({ data }) => {
         if (data) {
           setIsPremiumUser(data.is_premium || false)
+          setIsAdmin(data.is_admin || false)
           if (data.has_accepted_terms === false) {
             setIsOnboardingOpen(true)
           }
@@ -152,6 +154,12 @@ export default function AppLayout() {
       label: "Feedback", 
       onClick: () => setIsFeedbackOpen(true) 
     },
+    ...(isAdmin ? [{ 
+      icon: ShieldAlert, 
+      label: "Admin", 
+      isActive: location.pathname === "/admin/feedback", 
+      onClick: () => navigate("/admin/feedback") 
+    }] : []),
   ]
 
   return (

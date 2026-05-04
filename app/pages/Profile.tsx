@@ -692,7 +692,7 @@ export default function Profile() {
                   <div className="w-24 h-24 rounded-3xl p-1 bg-gradient-to-tr from-blue-500 to-purple-600 shadow-2xl mb-4">
                     <div className="bg-black w-full h-full rounded-[20px] overflow-hidden">
                       <img 
-                        src="/dev.jpg" 
+                        src="/unnamed.png" 
                         alt="Sujal G S" 
                         className="w-full h-full object-cover"
                         onError={(e) => {

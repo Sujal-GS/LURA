@@ -245,15 +245,15 @@ export default function Login() {
               <div className="mb-8 text-center flex flex-col items-center">
                 {forgotMode ? (
                   <>
-                    <h1 className="text-5xl md:text-7xl font-normal tracking-tight bg-clip-text text-transparent bg-gradient-to-b from-neutral-100 to-neutral-400">Reset password</h1>
-                    <p className="mt-4 text-neutral-400 text-sm max-w-sm text-balance">
+                    <h1 className="text-4xl md:text-5xl font-normal tracking-tight bg-clip-text text-transparent bg-gradient-to-b from-neutral-100 to-neutral-400 whitespace-nowrap">Reset password</h1>
+                    <p className="mt-3 text-neutral-400 text-sm max-w-sm text-balance">
                       Enter your email and we'll send you a reset link.
                     </p>
                   </>
                 ) : (
                   <>
-                    <h1 className="text-5xl md:text-7xl font-normal tracking-tight text-balance bg-clip-text text-transparent bg-gradient-to-b from-neutral-100 to-neutral-400">Welcome back</h1>
-                    <p className="mt-4 text-neutral-400 text-sm max-w-sm text-balance">
+                    <h1 className="text-4xl md:text-5xl font-normal tracking-tight bg-clip-text text-transparent bg-gradient-to-b from-neutral-100 to-neutral-400 whitespace-nowrap">Welcome back</h1>
+                    <p className="mt-3 text-neutral-400 text-sm max-w-sm text-balance">
                       Sign into your account
                     </p>
                   </>

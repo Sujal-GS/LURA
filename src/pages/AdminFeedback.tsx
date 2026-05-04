@@ -159,7 +159,7 @@ export default function AdminTerminal() {
   };
 
   return (
-    <div className="min-h-screen bg-black pb-[300px] pt-8 px-4 relative overflow-x-hidden">
+    <div className="min-h-screen bg-black pb-24 pt-8 px-4 relative overflow-x-hidden">
       <div className="max-w-4xl mx-auto space-y-8">
         {/* Header Section */}
         <div className="flex flex-col gap-8 pb-6 border-b border-white/5">
@@ -280,8 +280,6 @@ export default function AdminTerminal() {
                       </div>
                     </motion.div>
                   ))}
-                  {/* Bottom Spacer */}
-                  <div className="h-40" />
                 </div>
               )}
             </motion.div>
@@ -366,8 +364,6 @@ export default function AdminTerminal() {
                       </div>
                     </div>
                   ))}
-                  {/* Bottom Spacer */}
-                  <div className="h-40" />
                 </div>
               )}
             </motion.div>

@@ -123,7 +123,7 @@ export default function AdminTerminal() {
   };
 
   return (
-    <div className="min-h-screen bg-black pb-32 pt-8 px-4">
+    <div className="min-h-screen bg-black pb-48 pt-8 px-4">
       <div className="max-w-5xl mx-auto space-y-8">
         {/* Header Section */}
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">

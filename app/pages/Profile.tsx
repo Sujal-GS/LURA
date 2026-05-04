@@ -704,24 +704,23 @@ export default function Profile() {
 
                   <div className="flex flex-col gap-1 mb-6">
                     <h2 className="text-2xl font-bold tracking-tight">Sujal G S</h2>
-                    <p className="text-blue-400 text-sm font-medium">Full Stack Architect & Cybersecurity Specialist</p>
-                    <p className="text-neutral-500 text-xs">NMAM Institute of Technology</p>
+                    <p className="text-blue-400 text-sm font-medium">Cybersecurity Graduate & Security Architect</p>
+                    <p className="text-neutral-500 text-xs">Arch Linux Power User • Security Enthusiast</p>
                   </div>
 
                   <div className="space-y-6">
                     <div>
                       <h4 className="text-[10px] font-bold text-neutral-500 uppercase tracking-widest mb-2">The Mission</h4>
                       <p className="text-sm text-neutral-300 leading-relaxed">
-                        Sujal is a Computer Science undergraduate focused on Cybersecurity and AI. 
-                        He is the architect behind <span className="text-white font-semibold">Lura</span>, 
-                        a minimalist social platform designed for real-time performance and absolute data privacy.
+                        Sujal is a <span className="text-white font-semibold">Cybersecurity Graduate</span> dedicated to building hardened, privacy-first digital ecosystems. 
+                        As the architect of Lura, he leverages his expertise in security research and real-time systems to create a platform where data integrity is never a compromise.
                       </p>
                     </div>
 
                     <div>
                       <h4 className="text-[10px] font-bold text-neutral-500 uppercase tracking-widest mb-2">Engineering Edge</h4>
                       <div className="flex flex-wrap gap-2">
-                        {['Ethical Hacking', 'AI/ML', 'Real-time Arch', 'Supabase', 'React'].map(skill => (
+                        {['Arch Linux', 'Security Hardening', 'Ethical Hacking', 'Real-time Arch', 'Supabase'].map(skill => (
                           <span key={skill} className="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[10px] font-medium text-neutral-300">
                             {skill}
                           </span>

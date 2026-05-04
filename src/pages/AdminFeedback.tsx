@@ -148,18 +148,18 @@ export default function AdminTerminal() {
                 <ShieldAlert className="w-6 h-6 text-red-500" />
               </div>
               <div>
-                <h1 className="text-3xl font-normal tracking-tight text-white">Lura Admin Terminal</h1>
-                <p className="text-neutral-500 text-xs font-medium uppercase tracking-widest">System Control Unit</p>
+                <h1 className="text-2xl md:text-3xl font-normal tracking-tight text-white">Admin Terminal</h1>
+                <p className="text-neutral-500 text-[10px] font-medium uppercase tracking-[0.2em]">System Control Unit</p>
               </div>
             </div>
           </div>
 
-          <div className="flex bg-white/5 p-1.5 rounded-2xl border border-white/10 backdrop-blur-xl">
+          <div className="flex bg-white/5 p-1 rounded-2xl border border-white/10 backdrop-blur-xl w-fit">
             <button
               onClick={() => setActiveTab('feedback')}
-              className={`flex items-center gap-2 px-6 py-2.5 rounded-xl text-sm font-semibold transition-all ${
+              className={`flex items-center gap-2 px-4 md:px-6 py-2 md:py-2.5 rounded-xl text-xs md:text-sm font-semibold transition-all ${
                 activeTab === 'feedback' 
-                ? 'bg-white text-black shadow-lg shadow-white/5' 
+                ? 'bg-white text-black shadow-lg' 
                 : 'text-neutral-500 hover:text-neutral-300'
               }`}
             >
@@ -168,9 +168,9 @@ export default function AdminTerminal() {
             </button>
             <button
               onClick={() => setActiveTab('users')}
-              className={`flex items-center gap-2 px-6 py-2.5 rounded-xl text-sm font-semibold transition-all ${
+              className={`flex items-center gap-2 px-4 md:px-6 py-2 md:py-2.5 rounded-xl text-xs md:text-sm font-semibold transition-all ${
                 activeTab === 'users' 
-                ? 'bg-white text-black shadow-lg shadow-white/5' 
+                ? 'bg-white text-black shadow-lg' 
                 : 'text-neutral-500 hover:text-neutral-300'
               }`}
             >
@@ -292,27 +292,33 @@ export default function AdminTerminal() {
               ) : (
                 <div className="grid gap-4">
                   {users.map((user) => (
-                    <div key={user.id} className={`bg-neutral-900/40 backdrop-blur-2xl border ${user.is_banned ? 'border-red-500/20' : 'border-white/10'} rounded-[2.5rem] p-6 transition-all`}>
-                      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6">
-                        <div className="flex items-center gap-4">
-                          <img 
-                            src={user.avatar_url || `https://ui-avatars.com/api/?name=${user.username}`} 
-                            className={`w-14 h-14 rounded-full border-2 ${user.is_premium ? 'border-yellow-500/40' : 'border-white/5'} object-cover`}
-                          />
-                          <div>
-                            <div className="flex items-center gap-2">
-                              <h3 className="text-base font-bold text-white">@{user.username}</h3>
-                              {user.is_premium && <Crown className="w-4 h-4 text-yellow-500 shadow-[0_0_10px_rgba(234,179,8,0.3)]" />}
-                              {user.is_admin && <ShieldCheck className="w-4 h-4 text-blue-400" />}
+                    <div key={user.id} className={`bg-neutral-900/40 backdrop-blur-2xl border ${user.is_banned ? 'border-red-500/20' : 'border-white/10'} rounded-[2.5rem] p-5 md:p-8 transition-all`}>
+                      <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
+                        <div className="flex items-center gap-4 md:gap-6">
+                          <div className="relative">
+                            <img 
+                              src={user.avatar_url || `https://ui-avatars.com/api/?name=${user.username}`} 
+                              className={`w-14 h-14 md:w-16 md:h-16 rounded-full border-2 ${user.is_premium ? 'border-yellow-500/40' : 'border-white/5'} object-cover`}
+                            />
+                            {user.is_admin && (
+                              <div className="absolute -bottom-1 -right-1 bg-blue-500 rounded-full p-1 border-2 border-black">
+                                <ShieldCheck className="w-3 h-3 text-white" />
+                              </div>
+                            )}
+                          </div>
+                          <div className="min-w-0 flex-1">
+                            <div className="flex flex-wrap items-center gap-2">
+                              <h3 className="text-base md:text-lg font-bold text-white truncate max-w-[150px] md:max-w-none">@{user.username}</h3>
+                              {user.is_premium && <Crown className="w-4 h-4 text-yellow-500" />}
                             </div>
-                            <p className="text-neutral-500 text-xs">{user.full_name || 'No Name'}</p>
+                            <p className="text-neutral-500 text-xs md:text-sm truncate">{user.full_name || 'No Name'}</p>
                             {user.is_banned && (
                               <span className="text-[10px] font-black uppercase tracking-tighter text-red-500 mt-1 block">Banned User</span>
                             )}
                           </div>
                         </div>
 
-                        <div className="flex flex-wrap items-center gap-2">
+                        <div className="flex flex-wrap items-center gap-2 sm:gap-3">
                           {/* Premium Action */}
                           <button
                             onClick={() => togglePremium(user.id, user.is_premium)}

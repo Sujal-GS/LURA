@@ -338,7 +338,14 @@ export default function Login() {
                         className="relative z-10 space-y-4"
                       >
                         {error && (
-                          <div className="text-red-400 text-xs text-center p-2 bg-red-500/10 border border-red-500/20 rounded-lg">{error}</div>
+                          <div className={`text-xs text-center p-3 rounded-xl border ${
+                            error.toLowerCase().includes('banned') 
+                              ? 'bg-red-500 text-white border-red-400 font-bold shadow-[0_0_20px_rgba(239,68,68,0.3)]' 
+                              : 'text-red-400 bg-red-500/10 border-red-500/20'
+                          }`}>
+                            {error.toLowerCase().includes('banned') && <div className="text-[10px] uppercase tracking-[0.2em] mb-1 opacity-80">Account Restricted</div>}
+                            {error}
+                          </div>
                         )}
                         <div className="space-y-1.5">
                           <label className="text-xs font-medium text-neutral-300 ml-1">Email</label>

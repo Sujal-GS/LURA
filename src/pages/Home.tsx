@@ -22,6 +22,7 @@ export type Post = {
     username: string
     avatar_url: string
     is_premium?: boolean
+    is_banned?: boolean
   }
 }
 
@@ -311,6 +312,9 @@ export function PostCard({
                 <Crown className="w-3.5 h-3.5 text-yellow-400 drop-shadow-[0_0_5px_rgba(250,204,21,0.6)]" />
               )}
             </div>
+            {!post.is_anonymous && post.profiles?.is_banned && (
+              <span className="text-[10px] font-bold text-red-500 uppercase tracking-tight">BANNED</span>
+            )}
             {post.is_premium && (
               <span className="text-[10px] font-bold tracking-widest text-yellow-500/80 uppercase">Lura+ Exclusive</span>
             )}
@@ -609,7 +613,7 @@ export default function Home() {
         .from('posts')
         .select(`
           *,
-          profiles (username, avatar_url, is_premium)
+          profiles (username, avatar_url, is_premium, is_banned)
         `)
         .in('user_id', feedUserIds)
         .order('created_at', { ascending: false })

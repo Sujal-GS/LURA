@@ -287,6 +287,9 @@ export default function Profile() {
                 {profile?.is_premium && (
                   <Crown className="w-5 h-5 text-yellow-400 drop-shadow-[0_0_8px_rgba(250,204,21,0.6)]" />
                 )}
+                {profile?.is_banned && (
+                  <span className="px-2 py-0.5 rounded-full bg-red-500 text-white text-[10px] font-bold uppercase tracking-tight shadow-[0_0_10px_rgba(239,68,68,0.4)]">Banned</span>
+                )}
               </div>
               <div className="flex gap-4 mt-2 text-sm">
                 <div className="flex flex-col items-center">

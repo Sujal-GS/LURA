@@ -162,7 +162,7 @@ export default function AdminTerminal() {
               }`}
             >
               <MessageSquarePlus className="w-4 h-4" />
-              Feedback Terminal
+              Feedback
             </button>
             <button
               onClick={() => setActiveTab('users')}
@@ -173,7 +173,7 @@ export default function AdminTerminal() {
               }`}
             >
               <Users className="w-4 h-4" />
-              User Management
+              Users
             </button>
           </div>
         </div>

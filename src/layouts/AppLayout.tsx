@@ -137,9 +137,9 @@ export default function AppLayout() {
     { icon: Home, label: "Home", isActive: location.pathname === "/", onClick: () => navigate("/") },
     { icon: Search, label: "Explore", isActive: location.pathname === "/explore", onClick: () => navigate("/explore") },
     { icon: PlusSquare, label: "Create", onClick: () => { setIsCreateOpen(true); setIsDockVisible(false); } },
-    { icon: MessageSquarePlus, label: "Feedback", onClick: () => setIsFeedbackOpen(true) },
     { icon: Activity, label: "Activity", isActive: location.pathname === "/activity", hasNotification: hasNewNotification && location.pathname !== '/activity', onClick: () => navigate("/activity") },
     { icon: User, label: "Profile", isActive: location.pathname === "/profile", onClick: () => navigate("/profile") },
+    { icon: MessageSquarePlus, label: "Feedback", onClick: () => setIsFeedbackOpen(true) },
   ]
 
   return (

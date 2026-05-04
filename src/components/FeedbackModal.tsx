@@ -88,13 +88,15 @@ export function FeedbackModal({ isOpen, onClose }: FeedbackModalProps) {
                 <motion.div 
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  className="flex flex-col items-center py-8 text-center"
+                  className="flex flex-col items-center py-10 text-center"
                 >
-                  <div className="w-12 h-12 bg-green-500/20 rounded-full flex items-center justify-center mb-3">
-                    <CheckCircle2 className="w-6 h-6 text-green-400" />
+                  <div className="w-16 h-16 bg-green-500/10 rounded-full flex items-center justify-center mb-4 border border-green-500/20 shadow-[0_0_30px_rgba(34,197,94,0.1)]">
+                    <CheckCircle2 className="w-8 h-8 text-green-400" />
                   </div>
-                  <h3 className="text-lg font-medium mb-1">Thank you!</h3>
-                  <p className="text-neutral-500 text-xs text-balance">Your feedback helps make Lura better.</p>
+                  <h3 className="text-xl font-medium mb-2 bg-clip-text text-transparent bg-gradient-to-b from-white to-neutral-400">Success!</h3>
+                  <p className="text-neutral-500 text-sm leading-relaxed px-4 text-balance">
+                    Your feedback has been received. <br/> We will work on it soon.
+                  </p>
                 </motion.div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-5">
@@ -139,15 +141,12 @@ export function FeedbackModal({ isOpen, onClose }: FeedbackModalProps) {
                   <HoverButton
                     type="submit"
                     disabled={isSubmitting || !message.trim()}
-                    className="w-full py-4 flex items-center justify-center gap-2 text-sm rounded-2xl"
+                    className="w-full py-4 flex items-center justify-center text-sm rounded-2xl font-semibold"
                   >
                     {isSubmitting ? (
                       <Loader2 className="w-4 h-4 animate-spin" />
                     ) : (
-                      <>
-                        <Send className="w-3.5 h-3.5" />
-                        <span>Submit Feedback</span>
-                      </>
+                      <span>Submit Feedback</span>
                     )}
                   </HoverButton>
                 </form>

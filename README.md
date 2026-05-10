@@ -116,7 +116,11 @@ Lura uses Supabase Row Level Security (RLS) to ensure that:
 
 ## 📜 License
 
-Distributed under the MIT License. See `LICENSE` for more information.
+This project is licensed under the **MIT License** with the **Commons Clause**.
+This means the code is source-available and free for personal or internal use,
+but **commercial selling or hosting as a service is strictly prohibited.**
+
+See [LICENSE](LICENSE) for the full text.
 
 Developed with ❤️ by [Sujal-GS](https://github.com/Sujal-GS)
 

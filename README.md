@@ -4,7 +4,7 @@
 
 Lura is a premium, minimalist social media platform designed for authentic sharing and exclusive content. Built with a focus on aesthetics and privacy, Lura offers a sleek dark-mode experience with advanced features like ephemeral stories, anonymous posting, and a curated "Lura+" premium ecosystem.
 
-### 🚀 [Access the Web App (Live Demo)](https://lura-six.vercel.app/login)
+### 🚀 [Access the Web App (Live Demo)](https://lura-ivory.vercel.app/login)
 
 > [!WARNING]
 > **🚧 Under Active Development**: This is currently a **Preview/Beta** version of the web app. Expect bugs and unfinished features as we refine the experience. Some features may be removed or replaced as development progresses.
